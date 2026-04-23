@@ -7,6 +7,7 @@ Visual examples, showcases, and case studies for TensorsLab Design.
 - `index.html` — links to all demo pages
 - `hero.html` — product-grade homepage hero direction
 - `style.html` — product-grade visual style reference
+- `model.html` — docs / model page concept
 - `design-canvas.html` — variant comparison board
 - `frames.html` — device/window frame gallery
 - `motion.html` — motion primitives sample

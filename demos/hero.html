@@ -274,10 +274,10 @@
         <div class="left">
           <div class="eyebrow">AI content infrastructure</div>
           <h1>Design that feels industrial, clear, and ready to ship.</h1>
-          <p class="lede">A more final homepage hero concept for TensorsLab Design. It balances product trust, clear hierarchy, and a calm system feel that can scale into launch pages, pricing, and docs.</p>
+          <p class="lede" data-slot="mode-copy">A more final homepage hero concept for TensorsLab Design. It balances product trust, clear hierarchy, and a calm system feel that can scale into launch pages, pricing, and docs.</p>
           <div class="actions">
-            <a class="btn primary" href="#">Start building</a>
-            <a class="btn" href="#">Explore docs</a>
+            <a class="btn primary" href="#" data-primary>Start building</a>
+            <a class="btn" href="#" data-secondary>Explore docs</a>
           </div>
           <div class="stats">
             <div class="stat"><strong>12x</strong><span>visual throughput</span></div>
@@ -316,6 +316,40 @@
         <div class="foot-card"><b>Studio modes</b><span>Prototype, deck, and motion share one design language.</span></div>
         <div class="foot-card"><b>Scalable system</b><span>The same hero can extend into pricing, docs, and launch pages.</span></div>
       </section>
+      <script>
+        const modes = {
+          hero: {
+            title: 'Design that feels industrial, clear, and ready to ship.',
+            copy: 'A more final homepage hero concept for TensorsLab Design. It balances product trust, clear hierarchy, and a calm system feel that can scale into launch pages, pricing, and docs.',
+            primary: 'Start building',
+            secondary: 'Explore docs',
+          },
+          docs: {
+            title: 'Docs that feel readable, technical, and trustworthy.',
+            copy: 'A docs-first variant for TensorsLab Design. It makes the product feel explained, structured, and easy to adopt for developers and operators.',
+            primary: 'Read the docs',
+            secondary: 'View API',
+          },
+          model: {
+            title: 'Models that feel clear, credible, and easy to compare.',
+            copy: 'A model-catalog variant for TensorsLab Design. It shifts the emphasis toward capabilities, benchmarks, and use-case clarity.',
+            primary: 'Try model',
+            secondary: 'Compare models',
+          },
+        };
+
+        const title = document.querySelector('h1');
+        const copy = document.querySelector('[data-slot="mode-copy"]');
+        const primary = document.querySelector('[data-primary]');
+        const secondary = document.querySelector('[data-secondary]');
+        const params = new URLSearchParams(window.location.search);
+        const mode = modes[params.get('mode')] ? params.get('mode') : 'hero';
+        const preset = modes[mode];
+        title.textContent = preset.title;
+        copy.textContent = preset.copy;
+        primary.textContent = preset.primary;
+        secondary.textContent = preset.secondary;
+      </script>
     </div>
   </body>
 </html>
