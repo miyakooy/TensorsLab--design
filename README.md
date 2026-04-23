@@ -1,66 +1,54 @@
 # TensorsLab Design
 
-TensorsLab Design is a **design-only** skill package for TensorsLab’s brand and product communication needs.
+TensorsLab Design 是专用于 TensorsLab 品牌与产品视觉传达的设计技能包。
 
-## Clean-room guarantee
+你可以这样使用它：
 
-This repository is being reconstructed as a clean-room TensorsLab design skill:
+- 「做一份 AI 心理学的演讲 PPT，推荐 3 个风格方向让我选」
+- 「帮我设计一个 TensorsLab 产品主页，参考 vercel 的风格」
+- 「做一个模型比较页面的视觉设计，展示 4 个模型的性能指标」
+- 「帮我做一套发布会的 Keynote 风格，配色要品牌一些」
 
-- keep the complete design capability set
-- remove all non-TensorsLab identity, voice, and showcase artifacts
-- replace all visuals, examples, and language with TensorsLab-native material
-- preserve generic mechanics only when they are not identity-bearing
-- rebuild anything that still feels like an external project after the label is removed
+它擅长：
+- 高保真 UI / App / Web 原型
+- 产品主页与营销页面
+- 演示 Deck 与发布会视觉
+- 动态图形与发布视频
+- 信息图表与数据可视化
+- 品牌视觉探索与设计评审
 
-## What this skill is for
+## 核心能力
 
-- High-fidelity UI / app / web prototypes
-- Presentation decks and pitch visuals
-- Motion graphics and launch videos
-- Infographics and data visualization
-- Brand-driven visual exploration
-- Design critique and visual QA
+- 统一的设计语言系统
+- 品牌化的视觉呈现
+- 支持 `tl-image` 进行图片生成 / 编辑
+- 聚焦 TensorsLab 市场营销、产品和销售的设计交付物
 
-## What this skill is not for
+## 推荐流程
 
-- Backend systems
-- Product infrastructure
-- Model orchestration
-- General TensorsLab business logic
-- Internal operations tooling
+1. 收集品牌资产与参考资料
+2. 明确任务类型（原型 / Deck / 动画 / 图表）
+3. 确定设计方向
+4. 产出变体与早期稿
+5. 打磨优化
+6. 评审验证
+7. 导出交付
 
-## Key characteristics
+## 手动资产
 
-- Same design-first workflow structure
-- TensorsLab brand language and product context
-- Optional use of `vison-skills` for visual generation / editing tasks
-- Focused on TensorsLab marketing, product, and sales design deliverables
+部分示例与原始品牌强相关，需要**重构**而非直接复制。
 
-## Suggested workflow
-
-1. Collect brand assets and references
-2. Decide whether the task is prototype / deck / animation / infographic
-3. Pick design direction(s)
-4. Produce variants and early placeholders
-5. Refine
-6. Verify
-7. Export
-
-## Manual asset note
-
-Some examples are tightly coupled to their original brand or case library. Those should be **reworked**, not copied directly.
-
-If a needed asset cannot be generated automatically, the skill should explicitly tell the user which items must be provided manually:
+如果需要的资产无法自动生成，技能应明确告知需要手动提供的项目：
 
 - Logo
-- Product screenshots
-- Brand guidelines
-- Official product imagery
-- Case-study photos or illustrations
+- 产品截图
+- 品牌规范
+- 官方产品图
+- 案例照片或插图
 
-## Repository layout
+## 仓库结构
 
-```text
+```
 TensorsLab--design/
 ├── SKILL.md
 ├── README.md
@@ -70,7 +58,6 @@ TensorsLab--design/
 └── demos/
 ```
 
+## 手动案例迁移
 
-## Manual case migration
-
-See `references/manual-case-migration.md` for examples that should be rebuilt instead of copied directly.
+部分示例需要重构而非直接复制，详见 `references/manual-case-migration.md`。
