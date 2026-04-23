@@ -24,7 +24,7 @@ TensorsLab Design 提供完整的设计工作流支持：
 - **信息图表与数据可视化**：清晰的数据呈现和品牌图表
 - **品牌视觉探索与设计评审**：多方向探索和设计质量评审
 
-设计系统基于统一的设计语言：绿色（信任 accent）、蓝色（产品 anchor）、白色（背景），确保视觉一致性。
+设计系统支持灵活的品牌定制，产出风格由用户需求和场景决定。
 
 ## 设计资产
 
@@ -103,7 +103,7 @@ Example commands:
 
 ## Design System
 
-Based on TensorsLab's unified design language: Green (trust accent), Blue (product anchor), White (background).
+Flexible brand customization - output style is determined by user needs and context.
 
 ## Components Included
 
