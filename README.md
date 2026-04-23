@@ -1,10 +1,9 @@
 ---
+name: TensorsLab Design
+description: High-fidelity UI prototypes, marketing pages, presentation decks, infographics. 为 TensorsLab AI 产品设计。AI 产品原型/UI 设计/营销页面/演示文稿. AI 디자인/프론트엔드 プロトタイプ/マーケティングページ/プレゼンテーションシート.
 title: TensorsLab Design - AI Product Design Skill for Claude Code
-description: High-fidelity UI prototypes, marketing pages, presentation decks, infographics - a design skill for TensorsLab AI products. One prompt delivers ready-to-use designs.
-keywords: AI design skill, Claude Code, frontend prototype, UI design, marketing page, presentation deck, infographic, HTML design, no-code design
+keywords: AI design skill, Claude Code, frontend prototype, UI design, marketing page, presentation deck, infographic, HTML design, no-code design, AI 产品设计, UI 设计,  prototyping,  プロトタイプ, AI 디자인, 프론트엔드
 language: en-US
- og:title: TensorsLab Design - AI Product Design Skill
- og:description: High-fidelity design skill for TensorsLab AI products. One prompt, deliverable result.
 ---
 
 # TensorsLab Design
@@ -132,3 +131,4 @@ MIT License. Personal use free. Commercial use requires permission.
 - v1.0 (2026-04) — Initial release with 8 component templates
 - v1.1 (2026-04) — Added pricing page, modular hero layouts
 - v1.2 (2026-04) — SEO optimization, bilingual README
+- v1.3 (2026-04) — Multilingual triggers in front matter

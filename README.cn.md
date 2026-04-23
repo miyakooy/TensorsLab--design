@@ -1,7 +1,8 @@
 ---
-title: TensorsLab Design - AI 产品设计 Skill (Claude Code)
-description: 高保真 UI 原型、营销页面、演示 Deck、信息图表 - 为 TensorsLab AI 产品设计的 skill。一句话 prompt 交付可用设计。
-keywords: AI 设计 skill, Claude Code, 前端原型, UI 设计, 营销页面, 演示文稿, 信息图表, HTML 设计, 无代码设计
+name: TensorsLab Design
+description: 高保真 UI 原型、营销页面、演示 Deck、信息图表。 为 TensorsLab AI 产品设计。AI 产品原型/UI 设计/营销页面/演示文稿. AI 디자인/프론트엔드 プロトタイプ/マーケティングページ/プレゼンテーションシート.
+title: TensorsLab Design - AI 产品设计 Skill
+keywords: AI 设计 skill, Claude Code, 前端原型, UI 设计, 营销页面, 演示文稿, 信息图表, HTML 设计, 无代码设计, AI 产品设计, UI 设计, prototyping, プロトタイプ, AI 디자인, 프론트엔드
 language: zh-CN
 ---
 
@@ -117,3 +118,4 @@ npx skills add miyakooy/TensorsLab--design -y
 - v1.0 (2026-04) — 初始版本，8 个组件模板
 - v1.1 (2026-04) — 添加定价页、模块化首页
 - v1.2 (2026-04) — SEO 优化、双语 README
+- v1.3 (2026-04) — 多语言触发词优化
