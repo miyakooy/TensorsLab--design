@@ -140,7 +140,6 @@ This is an 80-point skill. For those who don't want to open a GUI, 80 points is 
 
 ## Related Skills
 
-- [huashu-design](https://github.com/alchaincyf/huashu-design) — Similar skill, more animation features
 - [Claude Design](https://claude.ai/design) — Official AI design tool
 
 ---
