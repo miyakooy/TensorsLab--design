@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>苏州国潮特色小红书自动化运营培训</title>
+  <style>
+    :root {
+      --bg: #f5f3f0;
+      --ink: #2d2d2d;
+      --garden-green: #5a7d67;
+      --su-pink: #d4a5a5;
+      --ink-gray: #6b6b6b;
+      --white: #faf9f7;
+      --accent: #c9b8a8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      background: #1a1a1a;
+      color: var(--ink);
+    }
+    .deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+    section {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      padding: 80px 120px;
+      background: var(--bg);
+    }
+    section.active { display: flex; flex-direction: column; }
+    
+    /* Slide 1: Cover */
+    .slide-cover {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg) 0%, #e8e6e2 100%);
+    }
+    .slide-cover::before {
+      content: '';
+      position: absolute;
+      top: 60px; right: 80px;
+      width: 200px; height: 200px;
+      border: 2px solid var(--garden-green);
+      opacity: 0.3;
+    }
+    .slide-cover::after {
+      content: '';
+      position: absolute;
+      bottom: 60px; left: 80px;
+      width: 120px; height: 120px;
+      border: 2px solid var(--su-pink);
+      opacity: 0.3;
+      border-radius: 50%;
+    }
+    .cover-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      border: 1px solid var(--ink);
+      font-size: 14px;
+      letter-spacing: 4px;
+      margin-bottom: 40px;
+      color: var(--ink-gray);
+    }
+    .cover-title {
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 700;
+      letter-spacing: 8px;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+    .cover-title span { color: var(--garden-green); }
+    .cover-subtitle {
+      font-size: 20px;
+      color: var(--ink-gray);
+      margin-bottom: 60px;
+      letter-spacing: 2px;
+    }
+    .cover-meta {
+      font-size: 14px;
+      color: var(--ink-gray);
+    }
+    .cover-logo {
+      position: absolute;
+      bottom: 60px; right: 80px;
+      width: 48px; height: 48px;
+      background: var(--su-pink);
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+    
+    /* Slide 2: TOC */
+    .slide-toc { background: var(--white); }
+    .toc-title {
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 60px;
+      letter-spacing: 4px;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li {
+      display: flex;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--accent);
+      font-size: 22px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .toc-list li:hover { padding-left: 20px; color: var(--garden-green); }
+    .toc-num {
+      width: 48px;
+      font-size: 18px;
+      color: var(--su-pink);
+      font-weight: 600;
+    }
+    
+    /* Content Slides */
+    .slide-content {
+      background: var(--bg);
+    }
+    .content-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .content-num {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--su-pink);
+      letter-spacing: 2px;
+    }
+    .content-title {
+      font-size: 36px;
+      font-weight: 600;
+    }
+    .content-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .content-left h3 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      color: var(--garden-green);
+    }
+    .content-left p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--ink-gray);
+    }
+    .content-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .point {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: var(--white);
+      border-left: 3px solid var(--garden-green);
+    }
+    .point-icon {
+      width: 24px; height: 24px;
+      background: var(--garden-green);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .point h4 { font-size: 16px; margin-bottom: 8px; }
+    .point p { font-size: 14px; color: var(--ink-gray); }
+    
+    /* Process Slide */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .step {
+      text-align: center;
+      padding: 32px 16px;
+      background: var(--white);
+      border-top: 3px solid var(--su-pink);
+    }
+    .step-num {
+      width: 40px; height: 40px;
+      background: var(--su-pink);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 16px;
+    }
+    .step h4 { font-size: 16px; margin-bottom: 12px; }
+    .step p { font-size: 13px; color: var(--ink-gray); }
+    
+    /* Case Cards */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .case-card {
+      padding: 32px;
+      background: var(--white);
+      border: 1px solid var(--accent);
+    }
+    .case-card h4 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: var(--garden-green);
+    }
+    .case-stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .stat-item strong {
+      display: block;
+      font-size: 24px;
+      color: var(--su-pink);
+    }
+    .stat-item span { font-size: 13px; color: var(--ink-gray); }
+    
+    /* FAQ */
+    .faq-list { list-style: none; }
+    .faq-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--accent);
+    }
+    .faq-q {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--garden-green);
+    }
+    .faq-a { font-size: 15px; color: var(--ink-gray); line-height: 1.7; }
+    
+    /* Summary */
+    .slide-summary {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, var(--garden-green) 0%, #4a6554 100%);
+      color: white;
+    }
+    .slide-summary .content-title { color: white; }
+    .slide-summary p { color: rgba(255,255,255,0.8); }
+    .summary-points {
+      display: flex;
+      gap: 48px;
+      margin-top: 48px;
+    }
+    .summary-point strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .summary-point span { font-size: 14px; opacity: 0.8; }
+    
+    /* Navigation */
+    .nav {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+    }
+    .nav button {
+      padding: 12px 20px;
+      background: var(--white);
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .nav button:hover { background: var(--ink); color: white; }
+    .counter {
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      font-size: 14px;
+      color: var(--ink-gray);
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <!-- Slide 1: Cover -->
+    <section class="slide-cover active" data-screen-label="01 封面">
+      <div class="cover-badge">苏州站 · 小红书国风设计</div>
+      <h1 class="cover-title">小红书自动化<span>运营</span>培训</h1>
+      <p class="cover-subtitle">融入苏州园林、苏绣、江南水墨的国潮美学</p>
+      <p class="cover-meta">2026年 · 苏州轨道交通</p>
+      <div class="cover-logo"></div>
+    </section>
+    
+    <!-- Slide 2: TOC -->
+    <section class="slide-toc" data-screen-label="02 目录">
+      <h2 class="toc-title">目录</h2>
+      <ul class="toc-list">
+        <li><span class="toc-num">01</span> 小红书运营基础认知</li>
+        <li><span class="toc-num">02</span> 自动化运营工具介绍</li>
+        <li><span class="toc-num">03</span> 实操流程步骤</li>
+        <li><span class="toc-num">04</span> 优秀案例效果展示</li>
+        <li><span class="toc-num">05</span> 常见问题解答</li>
+        <li><span class="toc-num">06</span> 总结与答疑</li>
+      </ul>
+    </section>
+    
+    <!-- Slide 3: Basics -->
+    <section class="slide-content" data-screen-label="03 基础认知">
+      <div class="content-header">
+        <span class="content-num">01/06</span>
+        <h2 class="content-title">小红书运营基础认知</h2>
+      </div>
+      <div class="content-body">
+        <div class="content-left">
+          <h3>为什么选择小红书？</h3>
+          <p>苏州本地用户活跃度高，生活方式类内容需求旺盛。国潮风格契合城市气质，更容易获得年轻用户青睐。</p>
+        </div>
+        <div class="content-right">
+          <div class="point">
+            <div class="point-icon"></div>
+            <div>
+              <h4>平台调性</h4>
+              <p>年轻、时尚、生活方式分享</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon"></div>
+            <div>
+              <h4>推荐算法</h4>
+              <p>兴趣标签+地理位置双重推荐</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon"></div>
+            <div>
+              <h4>内容形式</h4>
+              <p>图文 > 视频 > 直播</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Slide 4: Tools -->
+    <section class="slide-content" data-screen-label="04 工具介绍">
+      <div class="content-header">
+        <span class="content-num">02/06</span>
+        <h2 class="content-title">自动化运营工具介绍</h2>
+      </div>
+      <div class="content-body">
+        <div class="content-left">
+          <h3>核心工具矩阵</h3>
+          <p>从内容生成到发布全链路自动化解决方案。</p>
+        </div>
+        <div class="content-right">
+          <div class="point">
+            <div class="point-icon"></div>
+            <div>
+              <h4>AI内容生成</h4>
+              <p>国潮风格Prompt模板，快速生成笔记</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon"></div>
+            <div>
+              <h4>定时发布</h4>
+              <p>多账号管理，避开审核高峰</p>
+            </div>
+          </div>
+          <div class="point">
+            <div class="point-icon"></div>
+            <div>
+              <h4>数据追踪</h4>
+              <p>阅读/��动/���化实时监控</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Slide 5: Process -->
+    <section class="slide-content" data-screen-label="05 实操流程">
+      <div class="content-header">
+        <span class="content-num">03/06</span>
+        <h2 class="content-title">实操流程步骤</h2>
+      </div>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>账号定位</h4>
+          <p>确定人设与内容方向</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>风格设计</h4>
+          <p>选择国潮视觉模板</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>内容生成</h4>
+          <p>AI批量生产笔记</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>定时发布</h4>
+          <p>设置最佳发布时间</p>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <h4>数据优化</h4>
+          <p>根据反馈迭代内容</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Slide 6: Cases -->
+    <section class="slide-content" data-screen-label="06 案例展示">
+      <div class="content-header">
+        <span class="content-num">04/06</span>
+        <h2 class="content-title">优秀案例效果展示</h2>
+      </div>
+      <div class="case-grid">
+        <div class="case-card">
+          <h4>苏州园林打卡攻略</h4>
+          <p>国潮风格园林导览，融入节气美学</p>
+          <div class="case-stats">
+            <div class="stat-item">
+              <strong>2.3w</strong>
+              <span>点赞</span>
+            </div>
+            <div class="stat-item">
+              <strong>890</strong>
+              <span>收藏</span>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <h4>苏绣手作教程</h4>
+          <p>非遗传承主题，内容深度足</p>
+          <div class="case-stats">
+            <div class="stat-item">
+              <strong>1.8w</strong>
+              <span>点赞</span>
+            </div>
+            <div class="stat-item">
+              <strong>1.2k</strong>
+              <span>收藏</span>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <h4>平江路美食地图</h4>
+          <p>探店+国潮设计结合</p>
+          <div class="case-stats">
+            <div class="stat-item">
+              <strong>3.1w</strong>
+              <span>点赞</span>
+            </div>
+            <div class="stat-item">
+              <strong>2.1k</strong>
+              <span>收藏</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Slide 7: FAQ -->
+    <section class="slide-content" data-screen-label="07 FAQ">
+      <div class="content-header">
+        <span class="content-num">05/06</span>
+        <h2 class="content-title">常见问题解答</h2>
+      </div>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <div class="faq-q">Q1: 国潮风格是否会被平台限流？</div>
+          <div class="faq-a">A: 不会。国潮是当前热门风格，平台鼓励特色内容。关键是保持内容质量，避免过度营销。</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-q">Q2: 自动化工具是否会被检测？</div>
+          <div class="faq-a">A: 建议适度使用，保持正常互动节奏。每天���布3-5篇为佳，避免高频操作。</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-q">Q3: 如何平衡流量与内容价值？</div>
+          <div class="faq-a">A: 流量是结果，不是目的。提供真正有价值的内容，自然获得推荐。</div>
+        </li>
+      </ul>
+    </section>
+    
+    <!-- Slide 8: Summary -->
+    <section class="slide-summary" data-screen-label="08 总结">
+      <h2 class="content-title">开启国潮运营之旅</h2>
+      <p>用苏州美学，讲好自己的故事</p>
+      <div class="summary-points">
+        <div class="summary-point">
+          <strong>3步</strong>
+          <span>快速上手</span>
+        </div>
+        <div class="summary-point">
+          <strong>100+</strong>
+          <span>模板素材</span>
+        </div>
+        <div class="summary-point">
+          <strong>1v1</strong>
+          <span>指导答疑</span>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <div class="counter"><span id="curr">1</span> / <span id="total">8</span></div>
+  <div class="nav">
+    <button onclick="prev()">←</button>
+    <button onclick="next()">→</button>
+  </div>
+  
+  <script>
+    const slides = document.querySelectorAll('section');
+    const total = slides.length;
+    let curr = 0;
+    
+    function show(idx) {
+      slides.forEach(s => s.classList.remove('active'));
+      slides[idx].classList.add('active');
+      document.getElementById('curr').textContent = idx + 1;
+    }
+    
+    function next() {
+      curr = (curr + 1) % total;
+      show(curr);
+    }
+    
+    function prev() {
+      curr = (curr - 1 + total) % total;
+      show(curr);
+    }
+    
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  </script>
+</body>
+</html>
