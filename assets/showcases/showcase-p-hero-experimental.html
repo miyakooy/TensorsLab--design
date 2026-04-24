@@ -1,0 +1,148 @@
+<!-- Experimental Style - Product Hero -->
+<!-- Style: Ash Thorp - Cinematic lighting, warm cyberpunk, volumetric -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Hero - Experimental</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --ink: #f0f0f0;
+      --cyan: #22d3ee;
+      --orange: #f97316;
+      --glow: rgba(34, 211, 238, 0.4);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'SF Pro Display', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.5;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .bg-glow-1 {
+      background: var(--cyan);
+      top: -200px;
+      right: -100px;
+    }
+    .bg-glow-2 {
+      background: var(--orange);
+      bottom: -200px;
+      left: -100px;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 720px;
+      padding: 40px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: glow 2s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 10px var(--glow); }
+      50% { box-shadow: 0 0 25px var(--glow); }
+    }
+    h1 {
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #888;
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .btn {
+      padding: 14px 32px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px var(--glow);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      border: 1px solid #333;
+      color: var(--ink);
+    }
+    .btn-secondary:hover { border-color: var(--cyan); }
+    .line {
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      margin: 0 auto;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="content">
+      <span class="badge">Future Ready</span>
+      <h1>Design for the next generation of products.</h1>
+      <p>A cinematic hero concept. Warm tones meet futuristic depth. Build experiences that feel ahead of their time.</p>
+      <div class="cta-group">
+        <a href="#" class="btn btn-primary">Get Started</a>
+        <a href="#" class="btn btn-secondary">Learn More</a>
+      </div>
+      <div class="line"></div>
+    </div>
+  </div>
+</body>
+</html>
